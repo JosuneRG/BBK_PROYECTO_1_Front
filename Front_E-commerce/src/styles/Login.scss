@@ -1,0 +1,40 @@
+.login-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-top: 0.5rem;
+    }
+
+    input {
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      padding: 0.7rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+}
