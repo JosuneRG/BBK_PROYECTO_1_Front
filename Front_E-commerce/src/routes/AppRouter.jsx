@@ -1,9 +1,9 @@
-import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register"; // si aplica
-import NotFound from "../pages/NotFound";
-import MainLayout from "../layout/MainLayout";
+import { Routes, Route } from "react-router-dom"
+import Home from "../pages/Home"
+import Login from "../pages/Login"
+import Register from "../pages/Register" // si aplica
+import NotFound from "../pages/NotFound"
+import MainLayout from "../layout/MainLayout"
 
 export default function AppRouter() {
   return (
@@ -16,5 +16,5 @@ export default function AppRouter() {
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
-  );
+  )
 }
