@@ -1,19 +1,15 @@
 import React from 'react';
-import Home from './pages/Home'; // Asegúrate que la ruta es correcta
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 export default function App() {
   return (
-    <div>
-      <Home />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+    </Routes>
   );
 }
-import AppRouter from './routes/AppRouter';
-
-function App() {
-  return (
-    <AppRouter />
-  );
-}
-
-export default App;

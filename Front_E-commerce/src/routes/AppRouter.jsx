@@ -5,7 +5,7 @@ import Register from "../pages/Register" // si aplica
 import NotFound from "../pages/NotFound"
 import MainLayout from "../layout/MainLayout"
 
-export default function AppRouter() {
+const AppRouter = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
@@ -18,20 +18,6 @@ export default function AppRouter() {
     </Routes>
   )
 }
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Login from '../pages/Login.jsx';
-// otros imports...
 
-function AppRouter() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<Login />} />
-        {/* otras rutas */}
-      </Routes>
-    </Router>
-  );
-}
 
 export default AppRouter;
