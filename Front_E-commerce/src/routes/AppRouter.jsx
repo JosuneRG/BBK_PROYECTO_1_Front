@@ -5,7 +5,7 @@ import Register from "../pages/Register" // si aplica
 import NotFound from "../pages/NotFound"
 import MainLayout from "../layout/MainLayout"
 
-export default function AppRouter() {
+const AppRouter = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
