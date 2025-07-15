@@ -1,9 +1,9 @@
-import { Routes, Route } from "react-router-dom"
-import Home from "../pages/Home"
-import Login from "../pages/Login"
-import Register from "../pages/Register" // si aplica
-import NotFound from "../pages/NotFound"
-import MainLayout from "../layout/MainLayout"
+import { Routes, Route, Navigate } from "react-router-dom";
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import NotFound from "../pages/NotFound";
+import MainLayout from "../layout/MainLayout";
 
 const AppRouter = () => {
   return (
@@ -12,12 +12,11 @@ const AppRouter = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        {/* Otras rutas */}
+        {/* Otras rutas aquí si las tienes */}
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
-  )
-}
-
+  );
+};
 
 export default AppRouter;
