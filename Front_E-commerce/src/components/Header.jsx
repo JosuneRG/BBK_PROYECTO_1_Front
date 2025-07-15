@@ -1,36 +1,59 @@
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';   // Ajusta ruta si es necesario
-import { CartContext } from '../context/CartContext';   // Ajusta ruta si es necesario
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { AuthContext } from '../context/AuthContext'
+import { CartContext } from '../context/CartContext'
 
 function Header() {
-  const { user, logout } = useContext(AuthContext);  // Usuario autenticado
-  const { cartItems } = useContext(CartContext);     // Items en carrito
-  const navigate = useNavigate();
+  const { user, logout } = useContext(AuthContext)
+  const { cartItems } = useContext(CartContext)
+  const navigate = useNavigate()
 
   const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
+    logout()
+    navigate('/login')
+  }
 
   return (
     <header style={styles.header}>
       <h1 style={styles.logo}>Librería BBK 📚</h1>
 
       <nav style={styles.nav}>
-        <NavLink to="/" style={styles.link} activeStyle={styles.activeLink} end>
+        <NavLink
+          to="/"
+          style={({ isActive }) =>
+            isActive ? { ...styles.link, ...styles.activeLink } : styles.link
+          }
+          end
+        >
           Home
         </NavLink>
-        <NavLink to="/products" style={styles.link} activeStyle={styles.activeLink}>
+
+        <NavLink
+          to="/products"
+          style={({ isActive }) =>
+            isActive ? { ...styles.link, ...styles.activeLink } : styles.link
+          }
+        >
           Productos
         </NavLink>
-        <NavLink to="/cart" style={styles.link} activeStyle={styles.activeLink}>
+
+        <NavLink
+          to="/cart"
+          style={({ isActive }) =>
+            isActive ? { ...styles.link, ...styles.activeLink } : styles.link
+          }
+        >
           Carrito ({cartItems.length})
         </NavLink>
 
         {user ? (
           <>
-            <NavLink to="/profile" style={styles.link} activeStyle={styles.activeLink}>
+            <NavLink
+              to="/profile"
+              style={({ isActive }) =>
+                isActive ? { ...styles.link, ...styles.activeLink } : styles.link
+              }
+            >
               {user.name || 'Perfil'}
             </NavLink>
             <button onClick={handleLogout} style={styles.logoutButton}>
@@ -39,17 +62,27 @@ function Header() {
           </>
         ) : (
           <>
-            <NavLink to="/login" style={styles.link} activeStyle={styles.activeLink}>
+            <NavLink
+              to="/login"
+              style={({ isActive }) =>
+                isActive ? { ...styles.link, ...styles.activeLink } : styles.link
+              }
+            >
               Login
             </NavLink>
-            <NavLink to="/register" style={styles.link} activeStyle={styles.activeLink}>
+            <NavLink
+              to="/register"
+              style={({ isActive }) =>
+                isActive ? { ...styles.link, ...styles.activeLink } : styles.link
+              }
+            >
               Registrarse
             </NavLink>
           </>
         )}
       </nav>
     </header>
-  );
+  )
 }
 
 const styles = {
@@ -89,6 +122,6 @@ const styles = {
     fontWeight: '600',
     fontSize: 16,
   },
-};
+}
 
-export default Header;
+export default Header
