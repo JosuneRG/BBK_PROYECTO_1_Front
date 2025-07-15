@@ -1,47 +1,55 @@
+import React, { useContext } from "react";
 import "../styles/Home.scss";
+import { CartContext } from "../context/CartContext";
 
 const featuredBooks = [
   {
     id: 1,
     title: "Cien Años de Soledad",
-    price: "$20",
-    image: "https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg",
+    price: 20,
+    image:
+      "https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg",
   },
   {
     id: 2,
     title: "Don Quijote",
-    price: "$18",
-    image: "https://images-na.ssl-images-amazon.com/images/I/71KilybDOoL.jpg",
+    price: 18,
+    image:
+      "https://images-na.ssl-images-amazon.com/images/I/71KilybDOoL.jpg",
   },
   {
     id: 3,
     title: "Harry Potter y la Piedra Filosofal",
-    price: "$22",
-    image: "https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg",
+    price: 22,
+    image:
+      "https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg",
   },
-
-{
-  id: 4,
-  title: "El Señor de los Anillos",
-  price: "$25",
-  image: "https://images-na.ssl-images-amazon.com/images/I/91SZSW8qSsL.jpg",
-},
-
- {
+  {
+    id: 4,
+    title: "El Señor de los Anillos",
+    price: 25,
+    image:
+      "https://images-na.ssl-images-amazon.com/images/I/91SZSW8qSsL.jpg",
+  },
+  {
     id: 5,
     title: "El Hobbit",
-    price: "$20",
-    image: "https://images-na.ssl-images-amazon.com/images/I/91b0C2YNSrL.jpg",
+    price: 20,
+    image:
+      "https://images-na.ssl-images-amazon.com/images/I/91b0C2YNSrL.jpg",
   },
   {
     id: 6,
     title: "El Alquimista",
-    price: "$21",
-    image: "https://images-na.ssl-images-amazon.com/images/I/71aFt4+OTOL.jpg",
+    price: 21,
+    image:
+      "https://images-na.ssl-images-amazon.com/images/I/71aFt4+OTOL.jpg",
   },
 ];
 
 export default function Home() {
+  const { addToCart } = useContext(CartContext);
+
   return (
     <div className="home-container">
       <section className="hero">
@@ -58,12 +66,13 @@ export default function Home() {
             <div key={book.id} className="book-card">
               <img src={book.image} alt={book.title} />
               <h3>{book.title}</h3>
-              <p>{book.price}</p>
+              <p>${book.price}</p>
+              {/* Botón "Ver más" eliminado */}
               <button
-                className="btn-see-more"
-                onClick={() => alert(`Pronto podrás ver más sobre: ${book.title}`)}
+                className="btn-add-cart"
+                onClick={() => addToCart(book)}
               >
-                Ver más
+                Añadir al carrito
               </button>
             </div>
           ))}
