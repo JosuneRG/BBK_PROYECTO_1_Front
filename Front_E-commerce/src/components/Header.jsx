@@ -5,13 +5,17 @@ import { CartContext } from '../context/CartContext'
 
 function Header() {
   return (
-    <header>
-      <h1>Librería BBK</h1>
-      <nav>
-        <Link to="/">Home</Link> | 
-        <Link to="/login">Login</Link> | 
-        <Link to="/register">Register</Link>
-      </nav>
+    <header className="header">
+      <div className="nav">
+        <div className="nav-left">
+          <Link to="/" className="home-link">📚 Librería BBK</Link>
+        </div>
+        <div className="nav-right">
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+          <Link to="/profile">Mi Perfil</Link>
+        </div>
+      </div>
     </header>
   )
 }
