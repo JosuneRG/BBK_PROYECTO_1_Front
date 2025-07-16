@@ -1,12 +1,10 @@
-@import './variables';
-
 .footer {
   width: 100%;
   max-width: 1000px;
   margin: 3rem auto 1rem;
   padding: 2rem 3rem;
-  background: $secondary-color;
-  border-radius: $border-radius;
+  background:  #264653; ;
+  border-radius:  20px;
   color: white;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
   text-align: center;
