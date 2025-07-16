@@ -45,6 +45,21 @@ const featuredBooks = [
     image:
       "https://images-na.ssl-images-amazon.com/images/I/71aFt4+OTOL.jpg",
   },
+{
+  id: 7,
+  title: "La Odisea",
+  price: 17,
+  image: "https://m.media-amazon.com/images/I/81gTwYAhU7L._AC_UF1000,1000_QL80_.jpg",
+},
+{
+  id: 8,
+  title: "Orgullo y Prejuicio",
+  price: 16,
+  image: "https://m.media-amazon.com/images/I/81OthjkJBuL._AC_UF1000,1000_QL80_.jpg",
+}
+
+
+
 ];
 
 export default function Home() {
