@@ -1,8 +1,16 @@
 .home-container {
+  width: 100vw;     // Full ancho de la ventana
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   padding: 2rem;
+  box-sizing: border-box;  // Para que padding no aumente el ancho
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #fafafa;
 
+  // Opcional: para eliminar margen/padding extra de body/html si afectan
+  margin: 0;
+  
   .hero {
     position: relative;
     height: 300px;
@@ -15,9 +23,11 @@
     color: white;
     text-align: center;
     padding: 0 1rem;
+    width: 100%;  // Asegura que ocupa todo el ancho disponible
 
     .hero-content {
-      max-width: 90%;
+      max-width: 900px;  // Limita para que no sea muy ancho en pantallas grandes
+      width: 90%;
       text-align: center;
 
       h1 {
@@ -35,6 +45,8 @@
 
   .featured {
     margin-top: 3rem;
+    flex: 1;
+    width: 100%;  // Para que no quede restringido el ancho
 
     h2 {
       text-align: center;
@@ -49,6 +61,9 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 2rem;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto; // centra el grid si no usa todo el ancho
 
       .book-card {
         padding: 1rem;
@@ -104,8 +119,10 @@
     }
   }
 
-  /* ✅ RESPONSIVE MEDIA QUERIES */
+  /* Responsive */
   @media (max-width: 768px) {
+    padding: 1.5rem;
+
     .hero {
       height: 240px;
 
@@ -160,4 +177,3 @@
     }
   }
 }
-
