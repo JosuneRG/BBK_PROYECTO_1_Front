@@ -1,34 +1,135 @@
-.register-container {
-  max-width: 400px;
-  margin: auto;
+.register-page {
+  width: 100vw;
+  height: calc(100vh - 30px); // Ajusta si hay header/footer
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
   padding: 2rem;
+  box-sizing: border-box;
+}
+
+.register-container {
+  max-width: 400px;      // ancho máximo como en login
+  width: 90%;            // para que sea responsivo, máximo 400px pero puede reducir en pantallas pequeñas
+  margin: auto;          // centrar horizontalmente
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;  
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
 
   form {
     display: flex;
     flex-direction: column;
 
     label {
-      margin-bottom: 1rem;
+      margin-top: 0.8rem;
+      font-weight: 500;
     }
 
     input {
-      padding: 0.5rem;
+      padding: 0.6rem;
       margin-top: 0.3rem;
+      margin-bottom: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
     }
 
     .error {
       color: red;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
     }
 
     .server-error {
       color: darkred;
+      font-size: 0.9rem;
       margin-top: 1rem;
     }
 
     button {
       margin-top: 1rem;
-      padding: 0.6rem;
+      padding: 0.7rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #0056b3;
+      }
     }
+  }
+
+  .login-link {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.95rem;
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.success-message {
+  text-align: center;
+  padding: 2rem;
+  color: #2d8659;
+  animation: fadeIn 0.6s ease forwards;
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.1rem;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeOutUp {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-fade-out {
+  animation: fadeOutUp 0.5s forwards;
+}
+
+.success-message {
+  text-align: center;
+  padding: 2rem;
+  color: #2d8659;
+  animation: fadeInDown 0.6s ease forwards;
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.1rem;
   }
 }

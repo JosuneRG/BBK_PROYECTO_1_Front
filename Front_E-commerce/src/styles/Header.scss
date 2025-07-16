@@ -1,11 +1,9 @@
-@import './variables';
-
 .header {
   max-width: 1000px;
   margin: 2rem auto;
-  background: $background-light;
+  background: #F9F7F7;
   padding: 1.5rem 2rem;
-  border-radius: $border-radius;
+  border-radius: 20px;
   box-shadow: 0 4px 12px rgba(38, 70, 83, 0.15);
 
   .nav {
@@ -34,7 +32,7 @@
 
   a {
     text-decoration: none;
-    color: $secondary-color;
+    color:  #264653; 
     font-weight: 600;
     font-size: 1.1rem;
     padding: 0.7rem 1.2rem;
@@ -42,7 +40,7 @@
     transition: background 0.25s, color 0.25s;
 
     &:hover, &.active {
-      background: $primary-color;
+      background: #FF6F61;  
       color: white;
       box-shadow: 0 4px 15px rgba(255, 111, 97, 0.7);
     }
