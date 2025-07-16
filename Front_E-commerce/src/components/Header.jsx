@@ -43,6 +43,7 @@ function Header() {
             isActive ? { ...styles.link, ...styles.activeLink } : styles.link
           }
         >
+          
           Carrito ({cartItems.length})
         </NavLink>
 
