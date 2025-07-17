@@ -56,10 +56,31 @@ const featuredBooks = [
   title: "Orgullo y Prejuicio",
   price: 16,
   image: "https://m.media-amazon.com/images/I/81OthjkJBuL._AC_UF1000,1000_QL80_.jpg",
-}
-
-
-
+},
+{
+  id: 9,
+  title: "La ladrona de libros",
+  price: 16,
+  image: "https://m.media-amazon.com/images/I/81eB+7+CkUL._AC_UF1000,1000_QL80_.jpg",
+  },
+{
+  id: 10,
+  title: "El Gran Gatsby",
+  price: 15,
+  image: "https://m.media-amazon.com/images/I/81af+MCATTL._AC_UY436_FMwebp_QL65_.jpg",
+  },
+{
+  id: 11,
+  title: "Fahrenheit 451",
+  price: 18,
+  image: "https://m.media-amazon.com/images/I/71OFqSRFDgL._AC_UF1000,1000_QL80_.jpg",
+},
+{
+  id: 12,
+  title: "El guardián entre el centeno",
+  price: 16,
+  image: "https://m.media-amazon.com/images/I/81OthjkJBuL._AC_UY436_FMwebp_QL65_.jpg",
+  },
 ];
 
 export default function Home() {
@@ -81,7 +102,7 @@ export default function Home() {
             <div key={book.id} className="book-card">
               <img src={book.image} alt={book.title} />
               <h3>{book.title}</h3>
-              <p>${book.price}</p>
+              <p>€{book.price}</p>
               {/* Botón "Ver más" eliminado */}
               <button
                 className="btn-add-cart"
