@@ -102,7 +102,7 @@ export default function Home() {
             <div key={book.id} className="book-card">
               <img src={book.image} alt={book.title} />
               <h3>{book.title}</h3>
-              <p>€{book.price}</p>
+              <p>{book.price} €</p>
               {/* Botón "Ver más" eliminado */}
               <button
                 className="btn-add-cart"

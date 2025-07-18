@@ -1,60 +1,75 @@
 .header {
-  max-width: 1000px;
-  margin: 2rem auto;
-  background: #F9F7F7;
-  padding: 1.5rem 2rem;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(38, 70, 83, 0.15);
+  background: linear-gradient(90deg, #264653, #2a9d8f); // un fondo degradado bonito
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: white;
 
   .nav {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    justify-content: center; /* cambia de space-between a center para centrar todo */
-    align-items: center;
-    gap: 2rem; /* espacio entre los bloques */
-  }
-
-  .nav-left, .nav-center, .nav-right {
-    /* ya no necesitan flex: 1 para evitar que se expandan */
-    display: flex;
+    justify-content: space-between;
     align-items: center;
   }
-
-  /* Opcional: si quieres que los items dentro sigan alineados a la izquierda, centro o derecha,
-     puedes usar esta regla en cada bloque */
 
   .nav-left {
+    flex: 1;
+    display: flex;
     justify-content: flex-start;
-  }
-
-  .nav-center {
-    justify-content: center;
-  }
-
-  .nav-right {
-    justify-content: flex-end;
-  }
-
-  a {
-    text-decoration: none;
-    color:  #264653; 
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding: 0.7rem 1.2rem;
-    border-radius: 14px;
-    transition: background 0.25s, color 0.25s;
-
-    &:hover, &.active {
-      background: #FF6F61;  
-      color: white;
-      box-shadow: 0 4px 15px rgba(255, 111, 97, 0.7);
-    }
+    padding-left: 2%;
   }
 
   .home-link {
-    font-size: 1.3rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 0; // añade esto si lo tenías antes con margen
+}
+
+  .nav-right {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    font-weight: 700;
+    gap: 1.2rem;
+  }
+
+  .icon-link {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 1.1rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      color: #ffddc1;
+    }
+  }
+
+  .cart-count {
+    background-color: #e76f51;
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.9rem;
+    color: white;
+    font-weight: bold;
+  }
+
+  .logout-btn {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
   }
 }

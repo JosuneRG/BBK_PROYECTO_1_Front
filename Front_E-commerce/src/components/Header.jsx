@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { CartContext } from "../context/CartContext";
+import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import "../styles/Header.scss";
 
 function Header() {
@@ -17,29 +18,23 @@ function Header() {
           </NavLink>
         </div>
 
-        <div className="nav-center">
-          <NavLink to="/" end>
-            Home
-          </NavLink>
-          <NavLink to="/products">Products</NavLink>
-          <NavLink to="/cart">
-            Carrito ({cartItems.length})
-          </NavLink>
-        </div>
-
         <div className="nav-right">
+          <NavLink to="/cart" className="icon-link">
+            <FaShoppingCart size={22} />
+            <span className="cart-count">{cartItems.length}</span>
+          </NavLink>
+
           {user ? (
             <>
-              <NavLink to="/profile">{user.name || "Perfil"}</NavLink>
-              <button onClick={logout} style={{marginLeft: "1rem", cursor: "pointer"}}>
-                Logout
-              </button>
+              <NavLink to="/profile" className="icon-link">
+                <FaUserCircle size={22} />
+              </NavLink>
+              <button onClick={logout} className="logout-btn">Salir</button>
             </>
           ) : (
-            <>
-              <NavLink to="/login">Login</NavLink>
-              <NavLink to="/register">Register</NavLink>
-            </>
+            <NavLink to="/login" className="icon-link">
+              <FaUserCircle size={22} />
+            </NavLink>
           )}
         </div>
       </nav>

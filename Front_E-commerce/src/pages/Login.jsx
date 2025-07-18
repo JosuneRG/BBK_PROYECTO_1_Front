@@ -18,10 +18,10 @@ const Login = () => {
       return;
     }
 
-    if (email === "test@libros.com" && password === "123456") {
+    if (email === "test@libros.com" && password === "") {
       setError("");
       login({ email });
-      navigate("/");
+      navigate("/");123456
     } else {
       setError("Email o contraseña incorrectos");
     }
