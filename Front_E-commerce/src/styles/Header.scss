@@ -8,15 +8,19 @@
 
   .nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* cambia de space-between a center para centrar todo */
     align-items: center;
+    gap: 2rem; /* espacio entre los bloques */
   }
 
   .nav-left, .nav-center, .nav-right {
-    flex: 1;
+    /* ya no necesitan flex: 1 para evitar que se expandan */
     display: flex;
     align-items: center;
   }
+
+  /* Opcional: si quieres que los items dentro sigan alineados a la izquierda, centro o derecha,
+     puedes usar esta regla en cada bloque */
 
   .nav-left {
     justify-content: flex-start;
