@@ -1,0 +1,60 @@
+.header {
+  max-width: 1000px;
+  margin: 2rem auto;
+  background: #F9F7F7;
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(38, 70, 83, 0.15);
+
+  .nav {
+    display: flex;
+    justify-content: center; /* cambia de space-between a center para centrar todo */
+    align-items: center;
+    gap: 2rem; /* espacio entre los bloques */
+  }
+
+  .nav-left, .nav-center, .nav-right {
+    /* ya no necesitan flex: 1 para evitar que se expandan */
+    display: flex;
+    align-items: center;
+  }
+
+  /* Opcional: si quieres que los items dentro sigan alineados a la izquierda, centro o derecha,
+     puedes usar esta regla en cada bloque */
+
+  .nav-left {
+    justify-content: flex-start;
+  }
+
+  .nav-center {
+    justify-content: center;
+  }
+
+  .nav-right {
+    justify-content: flex-end;
+  }
+
+  a {
+    text-decoration: none;
+    color:  #264653; 
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.7rem 1.2rem;
+    border-radius: 14px;
+    transition: background 0.25s, color 0.25s;
+
+    &:hover, &.active {
+      background: #FF6F61;  
+      color: white;
+      box-shadow: 0 4px 15px rgba(255, 111, 97, 0.7);
+    }
+  }
+
+  .home-link {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,12 @@
+import React from 'react'
+import '../styles/Footer.scss'
+
+const Footer = () => {
+  return (
+     <footer className="footer">
+      <p>© {new Date().getFullYear()} Librería BBK. Todos los derechos reservados.</p>
+    </footer>
+  )
+}
+
+export default Footer
