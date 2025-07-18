@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importamos para redireccionar
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate(); // Hook para redirigir
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +18,7 @@ function Login() {
     if (email === 'test@test.com' && password === 'test123') {
       setError('');
       alert('¡Login exitoso!');
+      navigate('/'); // Redirige a Home u otra ruta que quieras
     } else {
       setError('Email o contraseña incorrectos');
     }
@@ -121,4 +124,4 @@ const styles = {
   },
 };
 
-export default Login
+export default Login;
