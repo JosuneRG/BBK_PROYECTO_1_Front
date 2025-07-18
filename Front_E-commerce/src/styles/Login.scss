@@ -3,10 +3,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; // ocupa toda la altura de la pantalla
+
+  height: 100vh;
+  width: 100vw;
+
+  padding: 0; // elimina padding que podría provocar overflow
+  margin: 0;
+
   background-color: #f5f5f5;
-  width: 100vw; 
-  
+  box-sizing: border-box;
+  overflow: hidden; // evita scroll vertical/ horizontal innecesario
+
   h2 {
     margin-bottom: 1.5rem;
     color: #264653;
@@ -17,7 +24,7 @@
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(38, 70, 83, 0.15);
-    width: 100%;
+    width: 90vw;
     max-width: 400px;
 
     display: flex;
