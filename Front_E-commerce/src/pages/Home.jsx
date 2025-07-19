@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import "../styles/Home.scss";
 import { CartContext } from "../context/CartContext";
+import { useFavoritos } from "../context/FavoritosContext";
+import { FiHeart } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
 
-// Agrega el campo "genre" a cada libro
 const featuredBooks = [
   { id: 1, title: "Cien Años de Soledad", price: 20, genre: "Realismo mágico", image: "https://images-na.ssl-images-amazon.com/images/I/81WcnNQ-TBL.jpg" },
   { id: 2, title: "Don Quijote", price: 18, genre: "Clásico", image: "https://images-na.ssl-images-amazon.com/images/I/71KilybDOoL.jpg" },
@@ -20,6 +22,8 @@ const featuredBooks = [
 
 export default function Home() {
   const { addToCart } = useContext(CartContext);
+  const { toggleFavorito, isFavorito } = useFavoritos();
+
   const [maxPrice, setMaxPrice] = useState("");
   const [searchTitle, setSearchTitle] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
@@ -76,16 +80,30 @@ export default function Home() {
         <div className="featured">
           <h2>Libros Destacados</h2>
           <div className="books-grid">
-            {filteredBooks.map((book) => (
-              <div key={book.id} className="book-card">
-                <img src={book.image} alt={book.title} />
-                <h3>{book.title}</h3>
-                <p>{book.price} €</p>
-                <button className="btn-add-cart" onClick={() => addToCart(book)}>
-                  Añadir al carrito
-                </button>
-              </div>
-            ))}
+            {filteredBooks.map((book) => {
+              const favorito = isFavorito(book.id);
+              return (
+                <div key={book.id} className="book-card">
+                  <img src={book.image} alt={book.title} />
+                  <div className="book-title">
+                    <h3>{book.title}</h3>
+                    <span
+                      className="favorito-icon"
+                      onClick={() => toggleFavorito(book)}
+                      style={{ cursor: "pointer", color: favorito ? "red" : "gray" }}
+                      aria-label={favorito ? "Quitar de favoritos" : "Agregar a favoritos"}
+                      role="button"
+                    >
+                      {favorito ? <FaHeart /> : <FiHeart />}
+                    </span>
+                  </div>
+                  <p>{book.price} €</p>
+                  <button className="btn-add-cart" onClick={() => addToCart(book)}>
+                    Añadir al carrito
+                  </button>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

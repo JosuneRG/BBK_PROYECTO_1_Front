@@ -2,12 +2,14 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { CartContext } from "../context/CartContext";
-import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
+import { useFavoritos } from "../context/FavoritosContext";
+import { FaUserCircle, FaShoppingCart, FaHeart } from "react-icons/fa";
 import "../styles/Header.scss";
 
 function Header() {
   const { user, logout } = useContext(AuthContext);
   const { cartItems } = useContext(CartContext);
+  const { favoritos } = useFavoritos();
 
   return (
     <header className="header">
@@ -19,7 +21,14 @@ function Header() {
         </div>
 
         <div className="nav-right">
-          <NavLink to="/cart" className="icon-link">
+          <NavLink to="/favoritos" className="icon-link" style={{ position: "relative" }}>
+            <FaHeart size={22} color="red" />
+            {favoritos.length > 0 && (
+              <span className="favoritos-count">{favoritos.length}</span>
+            )}
+          </NavLink>
+
+          <NavLink to="/cart" className="icon-link" style={{ position: "relative" }}>
             <FaShoppingCart size={22} />
             <span className="cart-count">{cartItems.length}</span>
           </NavLink>
