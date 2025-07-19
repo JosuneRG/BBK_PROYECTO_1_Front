@@ -6,6 +6,10 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Layout from "./layout/MainLayout";
 import Cart from "./pages/Cart";
+import Favoritos from "./pages/Favoritos"; // Asegúrate que esté bien importado
+
+<Route path="favoritos" element={<Favoritos />} />
+
 
 const App = () => {
   return (
@@ -16,6 +20,7 @@ const App = () => {
         <Route path="register" element={<Register />} />
         <Route path="profile" element={<Profile />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="favoritos" element={<Favoritos />} />
       </Route>
     </Routes>
   );

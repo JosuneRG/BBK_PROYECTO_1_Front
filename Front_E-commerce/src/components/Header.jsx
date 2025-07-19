@@ -21,6 +21,7 @@ function Header() {
         </div>
 
         <div className="nav-right">
+          {/* Ícono de favoritos con contador */}
           <NavLink to="/favoritos" className="icon-link" style={{ position: "relative" }}>
             <FaHeart size={22} color="red" />
             {favoritos.length > 0 && (
@@ -28,11 +29,15 @@ function Header() {
             )}
           </NavLink>
 
+          {/* Ícono del carrito */}
           <NavLink to="/cart" className="icon-link" style={{ position: "relative" }}>
             <FaShoppingCart size={22} />
-            <span className="cart-count">{cartItems.length}</span>
+            {cartItems.length > 0 && (
+              <span className="cart-count">{cartItems.length}</span>
+            )}
           </NavLink>
 
+          {/* Usuario autenticado o login */}
           {user ? (
             <>
               <NavLink to="/profile" className="icon-link">
