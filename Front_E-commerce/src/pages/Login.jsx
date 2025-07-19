@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom'; // Asegúrate de importar Link
+import React, { useState, useContext } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';  // Ajusta la ruta según estructura
 import "../styles/Login.scss";
 
-function Login() {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const { login, error, isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      setError("Por favor ingresa email y contraseña");
-      return;
-    }
+    await login(email, password);
 
-    if (email === 'test@test.com' && password === 'test123') {
-      setError('');
-      alert('¡Login exitoso!');
+    // Si login es exitoso, redirigir a profile
+    if (isAuthenticated) {
       navigate('/profile');
-    } else {
-      setError("Email o contraseña incorrectos");
     }
   };
 
@@ -34,7 +29,7 @@ function Login() {
           type="email"
           required
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
         />
 
         <label>Contraseña</label>
@@ -42,21 +37,19 @@ function Login() {
           type="password"
           required
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
         />
 
         <button type="submit">Entrar</button>
 
-        {/* Mensaje de error si existe */}
         {error && <p className="error">{error}</p>}
 
-        {/* Enlace de registro */}
         <p className="register-link">
           ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
         </p>
       </form>
     </div>
   );
-}
+};
 
 export default Login;
