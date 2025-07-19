@@ -63,11 +63,27 @@
         background-color: #e85b50;
       }
     }
+
+    .register-link {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.95rem;
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
   .error {
     color: red;
     font-size: 0.9rem;
     margin-top: 0.5rem;
+    text-align: center;
   }
 }
