@@ -1,25 +1,44 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { AuthContext } from "../context/AuthContext"; // Para obtener el usuario
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/Cart.scss";
 
 const Cart = () => {
-  const { cartItems, removeFromCart, clearCart } = useContext(CartContext);
+  const { cartItems, removeFromCart, clearCart, getTotal } = useContext(CartContext);
+  const { user } = useContext(AuthContext);  // Usuario logueado
   const navigate = useNavigate();
 
-  const total = cartItems.reduce((acc, item) => {
-    const priceNumber = Number(String(item.price).replace("$", "")) || 0;
-    return acc + priceNumber;
-  }, 0);
+  const total = getTotal();
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (cartItems.length === 0) {
       alert("El carrito está vacío, no hay nada para comprar.");
       return;
     }
-    alert("¡Gracias por tu compra! Tu pedido ha sido procesado.");
-    clearCart();
-    navigate("/");
+
+    if (!user) {
+      alert("Debes iniciar sesión para finalizar el pedido.");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      // Enviar pedido al backend
+      const response = await axios.post("http://localhost:4000/api/orders", {
+        userId: user.id,   // Asegúrate que user.id está definido
+        items: cartItems,
+        total,
+      });
+
+      alert("¡Gracias por tu compra! Tu pedido ha sido procesado.");
+      clearCart();
+      navigate("/profile");
+    } catch (error) {
+      console.error("Error al crear pedido:", error);
+      alert("Hubo un error al procesar tu pedido.");
+    }
   };
 
   return (
@@ -34,7 +53,7 @@ const Cart = () => {
               {cartItems.map((item) => (
                 <li key={item.id} className="cart-item">
                   <div className="cart-item-info">
-                    <h3>{item.title}</h3>
+                    <h3>{item.title || item.name}</h3>
                     <p>Precio: {item.price} €</p>
                     <button
                       onClick={() => removeFromCart(item.id)}
@@ -62,6 +81,6 @@ const Cart = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Cart;

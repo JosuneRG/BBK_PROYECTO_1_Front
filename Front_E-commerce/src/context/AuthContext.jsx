@@ -1,4 +1,3 @@
-// AuthContext.jsx
 import React, { createContext, useReducer } from 'react';
 import authReducer from './authReducer';
 import axios from 'axios';
@@ -15,22 +14,26 @@ export const AuthContext = createContext(initialState);
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  // Función para hacer login
   const login = async (email, password) => {
     try {
       const res = await axios.post('http://localhost:4000/api/login', { email, password });
       
+      // Aquí mapeamos _id a id para uniformidad
+      const user = res.data.user;
+      if (user._id && !user.id) {
+        user.id = user._id;
+      }
+
       dispatch({
         type: 'LOGIN_SUCCESS',
         payload: {
-          user: res.data.user,
+          user,
           token: res.data.token,
         },
       });
 
-      // Guardar token en localStorage para persistencia
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user', JSON.stringify(res.data.user));
+      localStorage.setItem('user', JSON.stringify(user));
 
     } catch (error) {
       dispatch({
@@ -40,7 +43,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Función para hacer logout
   const logout = () => {
     dispatch({ type: 'LOGOUT' });
     localStorage.removeItem('token');
