@@ -11,6 +11,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
 }
 
 a {
@@ -24,11 +28,13 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+  width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;  // ✅ evita scroll horizontal
+  background-color: #ffffff; // blanco por defecto (ya lo sobreescribes si usas dark mode)
 }
+
 
 h1 {
   font-size: 3.2em;
