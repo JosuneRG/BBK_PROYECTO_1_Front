@@ -1,35 +1,55 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';  // Ajusta la ruta según estructura
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import "../styles/Login.scss";
 
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [localError, setLocalError] = useState("");
   const { login, error, isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Limpia error local si cambia email o password
+    if (localError) setLocalError("");
+  }, [email, password]);
+
+  useEffect(() => {
+    // Si autenticado, navega a profile
+    if (isAuthenticated) {
+      navigate("/profile");
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!email || !password) {
+      setLocalError("Por favor ingresa email y contraseña");
+      return;
+    }
+
+    // Usamos la función login del contexto para autenticación
     await login(email, password);
 
-    // Si login es exitoso, redirigir a profile
-    if (isAuthenticated) {
-      navigate('/profile');
+    // El contexto maneja el error, que viene en `error`
+    if (error) {
+      setLocalError(error);
     }
   };
 
   return (
     <div className="login-container">
       <h2>Iniciar Sesión</h2>
-      <form onSubmit={handleSubmit} className="login-form">
+      <form onSubmit={handleSubmit} className="login-form" noValidate>
         <label>Email</label>
         <input
           type="email"
           required
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
+          autoComplete="username"
         />
 
         <label>Contraseña</label>
@@ -37,12 +57,13 @@ const Login = () => {
           type="password"
           required
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
+          autoComplete="current-password"
         />
 
         <button type="submit">Entrar</button>
 
-        {error && <p className="error">{error}</p>}
+        {(localError || error) && <p className="error">{localError || error}</p>}
 
         <p className="register-link">
           ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
@@ -50,6 +71,6 @@ const Login = () => {
       </form>
     </div>
   );
-};
+}
 
 export default Login;

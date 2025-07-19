@@ -1,30 +1,19 @@
-// Usa imports en lugar de require
+// server.js
 import express from "express";
 import cors from "cors";
+import loginRoutes from "./routes/login.js";
+import ordersRoutes from "./routes/orders.js";
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-const users = [
-  { id: 1, email: "test@test.com", password: "8JN]z_w5$3X=", name: "Usuario de Prueba" },
-];
+// Rutas login
+app.use("/api/login", loginRoutes);
 
-app.post("/api/login", (req, res) => {
-  const { email, password } = req.body;
-
-  const user = users.find(u => u.email === email && u.password === password);
-
-  if (!user) {
-    return res.status(401).json({ message: "Email o contraseña incorrectos" });
-  }
-
-  res.json({
-    message: "Login exitoso",
-    user: { id: user.id, email: user.email, name: user.name },
-    token: "ejemplo-token-123",
-  });
-});
+// Rutas order
+app.use("/api/orders", ordersRoutes);
 
 const PORT = 4000;
 app.listen(PORT, () => {
